@@ -1,12 +1,10 @@
 const msg = new SpeechSynthesisUtterance();
-const voicesDropdown = document.getElementById('voiceSelect');
-const rate = document.getElementById('rate');
-const pitch = document.getElementById('pitch');
-const text = document.getElementById('text');
-const speakButton = document.getElementById('speak');
-const stopButton = document.getElementById('stop');
-
 let voices = [];
+const voicesDropdown = document.querySelector('#voices');
+const options = document.querySelectorAll('[name="rate"], [name="pitch"]');
+const textarea = document.querySelector('#text');
+const speakButton = document.querySelector('#speak');
+const stopButton = document.querySelector('#stop');
 
 function populateVoices() {
   voices = speechSynthesis.getVoices();
@@ -16,32 +14,27 @@ function populateVoices() {
 }
 
 function setVoice() {
-  msg.voice = voices.find(v => v.name === voicesDropdown.value);
-  restartSpeech();
+  msg.voice = voices.find(voice => voice.name === this.value);
+  toggle();
 }
 
-function speak() {
-  if (!text.value.trim()) return;
-  msg.text = text.value;
-  msg.rate = rate.value;
-  msg.pitch = pitch.value;
-  speechSynthesis.speak(msg);
-}
-
-function stop() {
+function toggle(startOver = true) {
   speechSynthesis.cancel();
+  if (startOver) speechSynthesis.speak(msg);
 }
 
-function restartSpeech() {
-  stop();
-  speak();
+function setOption() {
+  msg[this.name] = this.value;
 }
 
 speechSynthesis.addEventListener('voiceschanged', populateVoices);
 voicesDropdown.addEventListener('change', setVoice);
-rate.addEventListener('change', restartSpeech);
-pitch.addEventListener('change', restartSpeech);
-speakButton.addEventListener('click', speak);
-stopButton.addEventListener('click', stop);
+options.forEach(option => option.addEventListener('change', setOption));
+speakButton.addEventListener('click', () => {
+  msg.text = textarea.value;
+  toggle();
+});
+stopButton.addEventListener('click', () => toggle(false));
 
-populateVoices();
+// Initialize message text with textarea value
+msg.text = textarea.value;

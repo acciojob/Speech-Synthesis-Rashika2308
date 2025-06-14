@@ -1,69 +1,57 @@
 body {
-  font-family: sans-serif;
-  background: #00bcd4;
-  background-image: radial-gradient(#008ba3 1px, transparent 1px),
-    radial-gradient(#008ba3 1px, transparent 1px);
-  background-size: 28px 28px;
-  background-position: 0 0, 14px 14px;
-  margin: 0;
-  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: #00bcd4 url('https://www.transparenttextures.com/patterns/arabesque.png');
+  padding: 2rem;
 }
 
 .voiceinator {
-  max-width: 600px;
-  margin: 50px auto;
   background: white;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-.voiceinator h1 {
-  background: #ffc600;
-  margin: 0;
-  padding: 20px;
-  font-family: 'Pacifico', cursive;
-  font-size: 2.5rem;
+h1 {
   text-align: center;
+  background: #ffc600;
+  color: black;
+  padding: 1rem;
+  border-radius: 10px 10px 0 0;
+  margin: -2rem -2rem 1rem;
+}
+
+.hl {
+  font-family: cursive;
+  color: black;
+}
+
+textarea {
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  font-family: monospace;
 }
 
 .controls {
-  padding: 20px;
-}
-
-select,
-textarea {
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  font-size: 1rem;
-}
-
-input[type="range"] {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.buttons {
   display: flex;
   justify-content: space-between;
 }
 
 button {
-  width: 48%;
-  font-size: 1.2rem;
-  padding: 10px;
+  flex: 1;
+  margin: 0 5px;
+  padding: 1rem;
   background: #ffc600;
   border: none;
+  font-size: 1.2rem;
   cursor: pointer;
-  border-radius: 5px;
+  font-family: cursive;
 }
 
-button:hover {
-  background: #ffb300;
-}
-
-#stop {
-  font-weight: bold;
-  font-style: italic;
+input[type="range"] {
+  width: 100%;
+  margin: 0.5rem 0 1rem;
 }
